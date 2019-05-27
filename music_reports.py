@@ -8,21 +8,26 @@ def import_albums_from_file():
     return stripped_albums
 
 def want_to_view_all_imported_albums(stripped_albums):
-    for single_album in stripped_albums:
-        print(single_album)
+    for single_album_list in stripped_albums:
+        print(single_album_list)
+    return single_album_list
     
-def want_to_find_all_albums_by_genre(music_data, genre):
-    pass 
+def want_to_find_all_albums_by_genre(single_album_list, genre):
+    for category in single_album_list:
+        if category == genre:
+            print(single_album_list)
 
 
 #artist name,album name,release year,genre,length
 
 def main():
-    music_data = import_albums_from_file()
-    want_to_view_all_imported_albums(music_data)
     genre = "rock"
+    stripped_albums = import_albums_from_file()
+    single_album_list = want_to_view_all_imported_albums(stripped_albums)    
+    music_data = import_albums_from_file()
     
-    want_to_find_all_albums_by_genre(music_data, genre)
+    #want_to_view_all_imported_albums(music_data)
+    want_to_find_all_albums_by_genre(single_album_list, genre)
     
 
 
