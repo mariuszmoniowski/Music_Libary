@@ -10,41 +10,21 @@ def import_albums_from_file(): #importuje z pliku i dziele go na podzielone albu
             splited_albums.append(album_as_list)
     return splited_albums
 
-def want_to_view_all_imported_albums(splited_albums): #chce wydrukowac podzielone albumy
-    for single_album_list in splited_albums:
-        #print(single_album_list)
-        return single_album_list
 
-def pojedyncze_albumy(splited_albums): #sprawdzam czy da sie dodac album do nowej listy
-    aaa = []
-    for pojedynczy_album in splited_albums:
-        aaa.append(pojedynczy_album)
-    return aaa
-
-
-    
-def want_to_find_all_albums_by_genre(single_album_list, genre): #sprawdzam czy da sie 
-    new_list = []
-    for element in single_album_list:
-        new_list.append(element)
-    print(new_list)
 #artist name,album name,release year,genre,length
-
-def new_list_with_albums(splited_albums, genre): #sprawdzam czy da sie dodac do nowej listy po parametrze
-    lista = []
-    for album in splited_albums:
-        if genre in album:
-            lista.append(album)
-        print(lista)
-    return lista
 
 def get_albums_based_on_genre(splited_albums, genre):
     return_list = []
     for album in splited_albums:
         if album[3] == genre:
             return_list.append(album)
+    return return_list
+
+def want_to_find_all_albums_from_given_time_range():
+    return_list = []
 
     return return_list
+
 
 def my_print(my_list):
     for album in my_list:
