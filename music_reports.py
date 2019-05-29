@@ -10,8 +10,6 @@ def import_albums_from_file(): #importuje z pliku i dziele go na podzielone albu
             splited_albums.append(album_as_list)
     return splited_albums
 
-#artist name,album name,release year,genre,length
-
 def get_albums_based_on_genre(splited_albums, genre):
     return_list = []
     for album in splited_albums:
@@ -19,18 +17,15 @@ def get_albums_based_on_genre(splited_albums, genre):
             return_list.append(album)
     return return_list
 
-
-
-def want_to_find_all_albums_from_given_time_range(splited_albums, convert_lenght_into_sec): #it takes time lenght of album and convert it to seconds
+def want_to_find_all_albums_from_given_time_range(splited_albums, convert_lenght_into_sec): 
     #user_lenght = ask_for_time_range()
     from_time = convert_lenght_into_sec(input("Enter time range 'FROM' (mm:ss): "))
-    to_time = convert_lenght_into_sec(input("Enter time range 'TO' (mm:ss): ")"\n")
+    to_time = convert_lenght_into_sec(input("Enter time range 'TO' (mm:ss): "))
     for element in splited_albums:
         time = element[4]
         album_lenght = convert_lenght_into_sec(time) 
         if album_lenght in range(from_time,to_time+1):
             print(element)
-        
 
 def convert_lenght_into_sec(time): #it takes any time in format mm:ss and convert it to seconds
     time_sec = time.split(':')
@@ -40,6 +35,32 @@ def convert_lenght_into_sec(time): #it takes any time in format mm:ss and conver
 def my_print(my_list): #it prints every element in lists
     for album in my_list:
         print(album)
+
+def define_which_element_from_list_to_use(splited_albums): #decide wchih element of list to use
+    choice_element = input("\n|1: artist name |2: album name |3: release year |4: genre |5: length |\n    Which element of album are you interested in? (1,2,3,4,5): ")
+    choice = (int(choice_element)-1)
+    return choice
+
+def want_to_find_shortest_longest_album(splited_albums, convert_lenght_into_sec):
+    choice = define_which_element_from_list_to_use(splited_albums)
+    time_list = []
+    for element in splited_albums:
+        time = element[choice]
+        time_sec = convert_lenght_into_sec(time)
+        time_list.append(time_sec)
+    choice2 = input("Want to see shortest or longest album? press 's' for shortest or 'l' for longest ")
+    if choice2 == "s":
+        choice2 = min
+    elif choice2 == "l":
+        choice2 = max
+    print(choice2(splited_albums))
+
+
+
+
+
+
+
 
 def main(): #runs program
     genre = "rock"
@@ -55,7 +76,9 @@ def main(): #runs program
     #want_to_find_all_albums_by_genre(single_album_list, genre)
     #new_list_with_albums(splited_albums, genre)
     #print(pojedyncze_albumy)
-    want_to_find_all_albums_from_given_time_range(splited_albums, convert_lenght_into_sec)
-     
+    #want_to_find_all_albums_from_given_time_range(splited_albums, convert_lenght_into_sec)
+    #define_which_element_from_list_to_use(splited_albums)
+    want_to_find_shortest_longest_album(splited_albums, convert_lenght_into_sec)
+
 
 main()
