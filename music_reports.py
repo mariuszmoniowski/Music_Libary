@@ -69,13 +69,56 @@ def want_to_find_all_albums_created_by_given_artist(splited_albums, list_for_def
         print(artist)
    # choice 
 
-
-
+def main_function_selector(choose, print_list_with_lp):
+        if choose == 1:
+                print_list_with_lp(import_albums_from_file)
 
 
 def main(): #runs program
-    genre = "rock"
     splited_albums = import_albums_from_file()
+    is_running = True
+
+    while is_running:
+        choose = tasks_select(print_list_with_lp, main_menu_list)
+        #quit_func(choose)      #zaczalem kombinowac z funkcja quit ale ze nie dziala to ja zakomentowałem
+        if choose == "1":
+            is_running = False
+            print_list_with_lp(splited_albums)
+            input("Press Enter to continue...")
+            is_running = True
+        if choose == "2":
+            is_running = False
+            print_list_with_lp(genre_list)
+            choose = input("\nChoose genre to find albums by genre: \n")
+            input("Press Enter to continue...")
+            is_running = True                
+        if choose == "3":
+            is_running = False
+            want_to_find_all_albums_from_given_time_range(splited_albums, convert_lenght_into_sec)
+            print_empty_row()
+            input("Press Enter to continue...")
+            is_running = True        
+        if choose == "4":
+            is_running = False
+            want_to_find_shortest_longest_album(splited_albums)
+            print_empty_row
+            input("Press Enter to continue...")
+            is_running = True        
+        if choose == "5":
+            pass
+        if choose == "6":
+            pass
+        if choose == "7":
+            pass
+        if choose == "0":
+                is_running = False
+                print("\nSee you later.\n")
+                return is_running        
+        main_function_selector(choose, import_albums_from_file)
+    
+
+    #genre = "rock"
+    
     #single_album_list = want_to_view_all_imported_albums(splited_albums)    
         
     #my_print(splited_albums)
@@ -88,7 +131,7 @@ def main(): #runs program
     #want_to_find_all_albums_from_given_time_range(splited_albums, convert_lenght_into_sec)
     #define_which_element_from_list_to_use(splited_albums)
     #want_to_find_shortest_longest_album(splited_albums, convert_lenght_into_sec)
-    want_to_find_all_albums_created_by_given_artist(splited_albums, list_for_def)
+    #want_to_find_all_albums_created_by_given_artist(splited_albums, list_for_def)
     #define_which_element_from_list_to_use(splited_albums)
 
 
