@@ -11,12 +11,17 @@ def import_albums_from_file(): #importuje z pliku i dziele go na podzielone albu
             splited_albums.append(album_as_list)
     return splited_albums
 
-def get_albums_based_on_genre(splited_albums, genre):
+def get_albums_based_on_genre(splited_albums, genre_list):
+    splited_albums = import_albums_from_file()
+    print_list_with_lp(splited_albums)
+    genre = genre_selektor(genre_list)
     return_list = []
-    for album in splited_albums:
-        if album[3] == genre:
-            return_list.append(album)
-    return return_list
+    for kategory in splited_albums:
+        if kategory[3] == genre:
+            return_list.append(kategory)    # W TYM MIEJSCU JEST PROBLRM. NIE DLUKUJE LISTY Z WYNIKIEM
+            print(return_list)
+        #print_list_with_lp(return_list)
+    #return return_list
 
 def want_to_find_all_albums_from_given_time_range(splited_albums, convert_lenght_into_sec): 
     #user_lenght = ask_for_time_range()
@@ -88,8 +93,9 @@ def main(): #runs program
             is_running = True
         if choose == "2":
             is_running = False
-            print_list_with_lp(genre_list)
-            choose = input("\nChoose genre to find albums by genre: \n")
+            get_albums_based_on_genre(splited_albums, genre_list)
+            #print_list_with_lp(genre_list)
+            #choose = input("\nChoose genre to find albums by genre: \n")
             input("Press Enter to continue...")
             is_running = True                
         if choose == "3":
@@ -110,7 +116,7 @@ def main(): #runs program
             pass
         if choose == "7":
             pass
-        if choose == "0":
+        if choose == "0" or "q":
                 is_running = False
                 print("\nSee you later.\n")
                 return is_running        
