@@ -13,15 +13,13 @@ def import_albums_from_file(): #importuje z pliku i dziele go na podzielone albu
 
 def get_albums_based_on_genre(splited_albums, genre_list):
     splited_albums = import_albums_from_file()
-    print_list_with_lp(splited_albums)
     genre = genre_selektor(genre_list)
     return_list = []
     for kategory in splited_albums:
-        if kategory[3] == genre:
-            return_list.append(kategory)    # W TYM MIEJSCU JEST PROBLRM. NIE DLUKUJE LISTY Z WYNIKIEM
-            print(return_list)
-        #print_list_with_lp(return_list)
-    #return return_list
+        if kategory[3] == genre[0]:
+            return_list.append(kategory)
+            print_list_with_lp(return_list)  # blad podczas wyswietlania, powiela wpisy !!
+   
 
 def want_to_find_all_albums_from_given_time_range(splited_albums, convert_lenght_into_sec): 
     #user_lenght = ask_for_time_range()
@@ -49,11 +47,11 @@ def define_which_element_from_list_to_use(list_to_choose_from): #decide wchih el
     return choice
 
 def want_to_find_shortest_longest_album(splited_albums):
-    print_list_with_lp(list_for_def)
-    choice = define_which_element_from_list_to_use(splited_albums)
+    #print_list_with_lp(list_for_def)
+    #choice = define_which_element_from_list_to_use(splited_albums)
     time_list = []
     for element in splited_albums:
-        time = element[choice]
+        time = element[4]
         time_sec = convert_lenght_into_sec(time)
         time_list.append(time_sec)
     choice2 = input("Want to see shortest or longest album? Press 's' for shortest or 'l' for longest ")
@@ -64,11 +62,11 @@ def want_to_find_shortest_longest_album(splited_albums):
     print(choice2(splited_albums))
 
 def want_to_find_all_albums_created_by_given_artist(splited_albums, list_for_def):
-    choice = define_which_element_from_list_to_use(list_for_def)
+    choice = input("Write an artist: ") #define_which_element_from_list_to_use(list_for_def)
     artist_list = []
     for element in splited_albums:
-        artist = element[choice]
-        if artist not in artist_list:
+        #artist = element[choice]
+        if choice not in artist_list:
             artist_list.append(artist)
     for artist in enumerate(artist_list,1):
         print(artist)
@@ -111,7 +109,11 @@ def main(): #runs program
             input("Press Enter to continue...")
             is_running = True        
         if choose == "5":
-            pass
+            is_running = False
+            want_to_find_all_albums_created_by_given_artist(splited_albums, list_for_def)
+            print_empty_row
+            input("Press Enter to continue...")
+            is_running = True
         if choose == "6":
             pass
         if choose == "7":
@@ -123,22 +125,6 @@ def main(): #runs program
         main_function_selector(choose, import_albums_from_file)
     
 
-    #genre = "rock"
-    
-    #single_album_list = want_to_view_all_imported_albums(splited_albums)    
-        
-    #my_print(splited_albums)
-    #genre_albums = get_albums_based_on_genre(splited_albums, genre)
-    #my_print(genre_albums)
-    #want_to_view_all_imported_albums(splited_albums)
-    #want_to_find_all_albums_by_genre(single_album_list, genre)
-    #new_list_with_albums(splited_albums, genre)
-    #print(pojedyncze_albumy)
-    #want_to_find_all_albums_from_given_time_range(splited_albums, convert_lenght_into_sec)
-    #define_which_element_from_list_to_use(splited_albums)
-    #want_to_find_shortest_longest_album(splited_albums, convert_lenght_into_sec)
-    #want_to_find_all_albums_created_by_given_artist(splited_albums, list_for_def)
-    #define_which_element_from_list_to_use(splited_albums)
 
 
 main()
