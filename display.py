@@ -7,7 +7,7 @@ def print_list_with_lp(list_to_print):
 
 def tasks_select(print_list_with_lp, list_to_choose):
         print_list_with_lp(list_to_choose)
-        choose = input("Choose an action to proceed: ")
+        choose = input("Choose an action to proceed or 'Q' to quit: ")
         return choose
 
 def genre_selektor(genre_list):

@@ -62,14 +62,16 @@ def want_to_find_shortest_longest_album(splited_albums):
     print(choice2(splited_albums))
 
 def want_to_find_all_albums_created_by_given_artist(splited_albums, list_for_def):
-    choice = input("Write an artist: ") #define_which_element_from_list_to_use(list_for_def)
+    artist = input("Write an artist: ") #define_which_element_from_list_to_use(list_for_def)
     artist_list = []
     for element in splited_albums:
-        #artist = element[choice]
-        if choice not in artist_list:
-            artist_list.append(artist)
-    for artist in enumerate(artist_list,1):
-        print(artist)
+        if artist == element[0]:
+        #if artist not in artist_list:
+            artist_list.append(element)
+    #for artist in enumerate(artist_list,1):
+    #artist_list = element.strip().split(',')
+    #print(artist_list)
+    print_list_with_lp(artist_list)
    # choice 
 
 def main_function_selector(choose, print_list_with_lp):
@@ -83,45 +85,27 @@ def main(): #runs program
 
     while is_running:
         choose = tasks_select(print_list_with_lp, main_menu_list)
-        #quit_func(choose)      #zaczalem kombinowac z funkcja quit ale ze nie dziala to ja zakomentowałem
         if choose == "1":
-            is_running = False
             print_list_with_lp(splited_albums)
-            input("Press Enter to continue...")
-            is_running = True
-        if choose == "2":
-            is_running = False
-            get_albums_based_on_genre(splited_albums, genre_list)
-            #print_list_with_lp(genre_list)
-            #choose = input("\nChoose genre to find albums by genre: \n")
-            input("Press Enter to continue...")
-            is_running = True                
-        if choose == "3":
-            is_running = False
+        elif choose == "2":
+            get_albums_based_on_genre(splited_albums, genre_list)             
+        elif choose == "3":
             want_to_find_all_albums_from_given_time_range(splited_albums, convert_lenght_into_sec)
-            print_empty_row()
-            input("Press Enter to continue...")
-            is_running = True        
-        if choose == "4":
-            is_running = False
+            print_empty_row()       
+        elif choose == "4":
             want_to_find_shortest_longest_album(splited_albums)
-            print_empty_row
-            input("Press Enter to continue...")
-            is_running = True        
-        if choose == "5":
-            is_running = False
+            print_empty_row      
+        elif choose == "5":
             want_to_find_all_albums_created_by_given_artist(splited_albums, list_for_def)
             print_empty_row
-            input("Press Enter to continue...")
-            is_running = True
-        if choose == "6":
+        elif choose == "6":
             pass
-        if choose == "7":
+        elif choose == "7":
             pass
-        if choose == "0" or "q":
+        elif choose == "0" or choose == "q":
                 is_running = False
-                print("\nSee you later.\n")
-                return is_running        
+                print("\nSee you later.\n")       
+        input("Press Enter to back to Main Menu...")
         main_function_selector(choose, import_albums_from_file)
     
 
